@@ -11,5 +11,10 @@ const Profile = new Schema(
   },
   { timestamps: true, toJSON: { virtuals: true } }
 );
+Profile.virtual("boards", {
+  localField: "email",
+  ref: "Board",
+  foreignField: "creatorEmail"
+})
 
 export default Profile;

@@ -2,10 +2,26 @@ import mongoose from "mongoose"
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
+const CommentSchema = new Schema({
+  body: { type: String, required: true },
+  creatorEmail: { type: String, required: true }
+})
+
+
+CommentSchema.virtual("creator",
+  {
+    localField: "creatorEmail",
+    ref: "Profile",
+    foreignField: "email",
+    justOne: true
+  })
+
+
 const List = new Schema({
-  title: { type: String, required: true },
+  body: { type: String, required: true },
   creatorEmail: { type: String, required: true },
-  boardId: { type: ObjectId, ref: 'Board', required: true }
+  taskId: { type: ObjectId, ref: 'Board', required: true },
+  comments: [CommentSchema],
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 
@@ -17,11 +33,13 @@ List.virtual("creator",
     justOne: true
   })
 
-List.virtual("tasks", {
-  localField: "id",
-  ref: "Task",
-  foreignField: "taskId"
-})
+List.virtual("tasks",
+  {
+    localField: "id",
+    ref: "Tasks",
+    foreignField: "listId",
+  })
+
 
 //CASCADE ON DELETE
 List.pre('deleteMany', function (next) {
