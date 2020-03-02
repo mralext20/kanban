@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>420</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>//const Profile = new Schema(
+//  {
+//    subs: [{ type: String, unique: true }],
+//    email: { type: String, lowercase: true, unique: true },
+//    name: { type: String, required: true },
+//    picture: { type: String }
+//    // NOTE If you wish to add additional public properties for profiles do so here
+//  },
+//  { timestamps: true, toJSON: { virtuals: true } }
+//);
+//
+_Profile_
+--
+email
+name
+picture
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>960</x>
+      <y>390</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>//const List = new Schema({
+//  title: { type: String, required: true },
+// creatorEmail: { type: String, required: true },
+//  boardId: { type: ObjectId, ref: 'Board', required: true }
+//}, { timestamps: true, toJSON: { virtuals: true } })
+_Task_
+-
+Title
+ListId
+creatorEmail
+subdoc: [comment]
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>170</y>
+      <w>210</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>//const Board = new Schema({
+//  title: { type: String, required: true },
+//  description: { type: String, required: true },
+//  creatorEmail: { type: String, required: true }
+//}, { timestamps: true, toJSON: { virtuals: true } })
+_board_
+--
+title
+description
+creatorEmail
+Virtual: [lists]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>280</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>//const List = new Schema({
+//  title: { type: String, required: true },
+// creatorEmail: { type: String, required: true },
+//  boardId: { type: ObjectId, ref: 'Board', required: true }
+//}, { timestamps: true, toJSON: { virtuals: true } })
+_List_
+-
+title
+creatorEmail
+boardId
+Virtual: [Tasks]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>260</y>
+      <w>110</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;50.0;20.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>770</x>
+      <y>360</y>
+      <w>120</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>770</x>
+      <y>460</y>
+      <w>210</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>360</y>
+      <w>80</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;90.0;10.0;80.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>260</y>
+      <w>50</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+</diagram>
