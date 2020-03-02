@@ -1,7 +1,20 @@
 <template>
-  <div class="board">
-    <h1 v-if="board.title">{{board.title}}</h1>
-    <h1 v-else>Loading...</h1>
+  <div class="board container-fluid">
+    <div class="row text-center">
+      <div class="col-12 text-dark">
+        <div class="card mx-auto" style="width: 30rem;">
+          <div class="card-header">
+            <span v-if="board.title">{{board.title}}</span>
+            <span v-else>This board has no title!</span>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">List 1</li>
+            <li class="list-group-item">List 2</li>
+            <li class="list-group-item">List 3</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,3 +30,6 @@ export default {
   props: ["boardId"]
 };
 </script>
+
+<style >
+</style>

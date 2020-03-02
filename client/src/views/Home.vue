@@ -6,9 +6,13 @@
         <h5
           class="pt-5"
         >Your project boards allow you to quickly and easily organize tasks into lists and individual items.</h5>
-        <h5 v-if="!$auth.isAuthenticated">
+        <h5 class="pt-4" v-if="!$auth.isAuthenticated">
           Simply
           <span id="login-span" @click="login">login</span> to get started and create your first board!
+        </h5>
+        <h5 v-else class="pt-4">
+          You are now logged in! Click
+          <router-link class="text-light" :to="{ name: 'boards' }">here</router-link>&nbsp;to create a new board!
         </h5>
       </div>
     </div>
@@ -46,6 +50,10 @@ export default {
 
 <style scoped>
 span {
+  color: white;
+}
+span:hover {
+  transition: text-decoration 0.5s ease;
   text-decoration: underline;
 }
 #login-span:hover {

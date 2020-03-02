@@ -35,9 +35,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   min-height: 100vh;
-  text-shadow: 2px 2px 2px black;
   background-image: url(https://www.genelockwoods.com/wp-content/uploads/2017/10/wood-large-background-min.jpeg);
   background-position: center;
   background-size: cover;
@@ -50,6 +48,7 @@ export default {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: underline;
 }
 
 #nav a.router-link-exact-active {
