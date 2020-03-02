@@ -10,10 +10,10 @@
           Simply
           <span id="login-span" @click="login">login</span> to get started and create your first board!
         </h5>
-        <h5
-          v-else
-          class="pt-4"
-        >You are now logged in! Click on My Dashboard above to create a new board!</h5>
+        <h5 v-else class="pt-4">
+          You are now logged in! Click
+          <router-link class="text-light" :to="{ name: 'boards' }">here</router-link>&nbsp;to create a new board!
+        </h5>
       </div>
     </div>
   </div>
@@ -50,6 +50,9 @@ export default {
 
 <style scoped>
 span {
+  color: white;
+}
+span:hover {
   text-decoration: underline;
 }
 #login-span:hover {
