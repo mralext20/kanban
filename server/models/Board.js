@@ -15,6 +15,11 @@ Board.virtual("creator",
     foreignField: "email",
     justOne: true
   })
+Board.virtual("lists", {
+  localField: "id",
+  ref: "List",
+  foreignField: "boardId"
+})
 
 //CASCADE ON DELETE
 // Board.pre('findOneAndRemove', function (next) {

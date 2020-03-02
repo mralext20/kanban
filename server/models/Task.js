@@ -3,9 +3,9 @@ let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
 const List = new Schema({
-  title: { type: String, required: true },
+  body: { type: String, required: true },
   creatorEmail: { type: String, required: true },
-  boardId: { type: ObjectId, ref: 'Board', required: true }
+  taskId: { type: ObjectId, ref: 'Board', required: true }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 
@@ -17,11 +17,6 @@ List.virtual("creator",
     justOne: true
   })
 
-List.virtual("tasks", {
-  localField: "id",
-  ref: "Task",
-  foreignField: "taskId"
-})
 
 //CASCADE ON DELETE
 List.pre('deleteMany', function (next) {
