@@ -15,8 +15,8 @@
         >Looks pretty empty here huh? Once you start adding some boards they will appear below!</h3>
       </div>
       <!-- Board -->
-      <div v-for="board in boards" :key="board._id">
-        <div class="col-3 pt-3">
+      <transition-group tag="div" name="fade" mode="out-in">
+        <div class="col-3 pt-3" v-for="board in boards" :key="board._id">
           <div class="card mx-auto" style="width: 18rem;">
             <router-link :to="{name: 'board', params: {boardId: board._id}}">
               <div class="card-header text-dark">{{ board.title }}</div>
@@ -27,7 +27,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -61,6 +61,15 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.35s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 a {
   text-decoration: none;
 }

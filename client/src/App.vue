@@ -1,7 +1,9 @@
 <template>
   <div class="bg-dark text-light" id="app">
     <navbar />
-    <router-view />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -10,6 +12,9 @@ import Navbar from "./components/Navbar";
 import { onAuth } from "@bcwdev/auth0-vue";
 export default {
   name: "App",
+  data() {
+    return {};
+  },
   async beforeCreate() {
     try {
       await onAuth();
@@ -29,6 +34,15 @@ export default {
 <style lang="scss">
 @import "./assets/_variables.scss";
 @import "bootstrap";
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.35s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
