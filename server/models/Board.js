@@ -1,12 +1,12 @@
-import mongoose from "mongoose"
-let Schema = mongoose.Schema
-let ObjectId = Schema.Types.ObjectId
+import mongoose from "mongoose";
+let Schema = mongoose.Schema;
+let ObjectId = Schema.Types.ObjectId;
 
 const Board = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   creatorEmail: { type: String, required: true }
-}, { timestamps: true, toJSON: { virtuals: true } })
+}, { timestamps: true, toJSON: { virtuals: true } });
 
 Board.virtual("creator",
   {
@@ -14,12 +14,12 @@ Board.virtual("creator",
     ref: "Profile",
     foreignField: "email",
     justOne: true
-  })
+  });
 Board.virtual("lists", {
-  localField: "id",
-  ref: "List",
+  localField: "_id",
+  ref: "Lists",
   foreignField: "boardId"
-})
+});
 
 //CASCADE ON DELETE
 // Board.pre('findOneAndRemove', function (next) {
@@ -31,4 +31,4 @@ Board.virtual("lists", {
 //     .catch(err => next(err))
 // })
 
-export default Board
+export default Board;

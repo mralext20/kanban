@@ -1,12 +1,12 @@
-import mongoose from "mongoose"
-let Schema = mongoose.Schema
-let ObjectId = Schema.Types.ObjectId
+import mongoose from "mongoose";
+let Schema = mongoose.Schema;
+let ObjectId = Schema.Types.ObjectId;
 
 const List = new Schema({
   title: { type: String, required: true },
   creatorEmail: { type: String, required: true },
-  boardId: { type: ObjectId, ref: 'Board', required: true }
-}, { timestamps: true, toJSON: { virtuals: true } })
+  boardId: { type: ObjectId, required: true }
+}, { timestamps: true, toJSON: { virtuals: true } });
 
 
 List.virtual("creator",
@@ -18,9 +18,9 @@ List.virtual("creator",
   })
 
 List.virtual("tasks", {
-  localField: "id",
-  ref: "Task",
-  foreignField: "taskId"
+  localField: "_id",
+  ref: "Tasks",
+  foreignField: "listId"
 })
 
 //CASCADE ON DELETE
