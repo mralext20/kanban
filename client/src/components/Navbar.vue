@@ -1,6 +1,13 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">Kanban</router-link>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-none sticky-top">
+    <router-link class="navbar-brand" :to="{ name: 'home' }">
+      <img
+        src="https://cdn1.iconfinder.com/data/icons/agile/500/agile_sprint_plan-512.png"
+        height="30"
+        width="30"
+      />
+      <span class="ml-3">Kanban</span>
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -22,11 +29,11 @@
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'boards' }"
         >
-          <router-link class="nav-link" :to="{ name: 'boards' }">My-Dashboard</router-link>
+          <router-link class="nav-link" :to="{ name: 'boards' }">My Dashboard</router-link>
         </li>
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+        <button class="btn btn-secondary" @click="login" v-if="!$auth.isAuthenticated">Login</button>
         <button class="btn btn-danger" @click="logout" v-else>logout</button>
       </span>
     </div>
@@ -59,4 +66,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>

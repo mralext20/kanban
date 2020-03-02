@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="bg-dark text-light" id="app">
     <navbar />
     <router-view />
   </div>
@@ -29,12 +29,18 @@ export default {
 <style lang="scss">
 @import "./assets/_variables.scss";
 @import "bootstrap";
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
+  text-shadow: 2px 2px 2px black;
+  background-image: url(https://www.genelockwoods.com/wp-content/uploads/2017/10/wood-large-background-min.jpeg);
+  background-position: center;
+  background-size: cover;
 }
 
 #nav {
