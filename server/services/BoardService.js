@@ -7,7 +7,10 @@ class BoardService {
     let board = await dbContext.Boards.find({ creatorEmail: userEmail })
       .populate("creator", "name picture")
       .populate("lists")
-      .populate({ path: "lists", populate: { path: "tasks" } });
+      .populate({ path: "lists", populate: { path: "tasks" } })
+    // .populate({ path: "lists.tasks", populate: { path: "comments" } })
+
+
     return board;
   }
 

@@ -6,7 +6,7 @@ const List = new Schema({
   title: { type: String, required: true },
   creatorEmail: { type: String, required: true },
   boardId: { type: ObjectId, required: true }
-}, { timestamps: true, toJSON: { virtuals: true } })
+}, { timestamps: true, toJSON: { virtuals: true } });
 
 
 List.virtual("creator",
