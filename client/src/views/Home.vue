@@ -8,7 +8,7 @@
         >Your project boards allow you to quickly and easily organize tasks into lists and individual items.</h5>
         <h5 v-if="!$auth.isAuthenticated">
           Simply
-          <span id="login-span" @click="login" v-if="!$auth.isAuthenticated">login</span> to get started and create your first board!
+          <span id="login-span" @click="login">login</span> to get started and create your first board!
         </h5>
       </div>
     </div>
