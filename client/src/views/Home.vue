@@ -53,6 +53,7 @@ span {
   color: white;
 }
 span:hover {
+  transition: text-decoration 0.5s ease;
   text-decoration: underline;
 }
 #login-span:hover {
