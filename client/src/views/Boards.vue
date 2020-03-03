@@ -45,7 +45,7 @@
       <div class="col-12">
         <transition-group tag="div" class="row" name="fade" mode="out-in">
           <div class="col-md-4 py-3" v-for="board in boards" :key="board._id">
-            <div class="card mx-auto my-3" style="height: 6.8rem">
+            <div class="card mx-auto my-3">
               <router-link :to="{name: 'board', params: {boardId: board._id}}">
                 <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
               </router-link>
@@ -120,6 +120,8 @@ a {
 
 .card {
   opacity: 90%;
+  height: 6.8rem;
+  width: auto !important;
 }
 
 .card-header:hover {
