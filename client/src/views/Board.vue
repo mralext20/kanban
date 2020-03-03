@@ -2,7 +2,7 @@
   <div class="board container-fluid">
     <div class="row text-center">
       <div class="col-12 text-dark">
-        <div class="card mx-auto" style="width: 30rem;">
+        <div class="card mx-auto">
           <div class="card-header">
             <span v-if="board.title">Title: {{board.title}}</span>
             <span v-else>This board has no title!</span>
@@ -16,10 +16,10 @@
               <form @submit.prevent="addList" class="form-inline">
                 <button
                   type="submit"
-                  class="btn btn-sm btn-secondary ml-auto mr-3 my-2"
+                  class="btn btn-sm btn-secondary mx-auto mr-3 my-2"
                 >Create New List</button>
                 <input
-                  class="form-control mr-auto"
+                  class="form-control mx-auto my-2"
                   type="text"
                   name="title"
                   placeholder="List Title..."
@@ -77,4 +77,25 @@ export default {
 </script>
 
 <style >
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .card {
+    width: auto;
+  }
+
+  .form-control {
+    margin: 1rem !important;
+  }
+
+  .btn {
+    margin-top: 1rem !important;
+    margin-bottom: 0 !important;
+  }
+}
+/* devices larger than 600px */
+@media only screen and (min-width: 600px) {
+  .card {
+    width: 30rem;
+  }
+}
 </style>

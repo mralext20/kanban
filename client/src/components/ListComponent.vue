@@ -1,5 +1,5 @@
 <template>
-  <div class="col col-md-3 pt-4">
+  <div class="col-sm-12 col-md-3 pt-4">
     <div class="card text-dark">
       <div class="card-header">{{listData.title}}</div>
       <ul class="list-group list-group-flush">
@@ -25,6 +25,6 @@ export default {
 
 <style scoped>
 .card {
-  width: 5rem !important;
+  width: auto !important;
 }
 </style>
