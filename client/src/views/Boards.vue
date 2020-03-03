@@ -20,7 +20,7 @@
           <div class="col-4 py-3" v-for="board in boards" :key="board._id">
             <div class="card mx-auto" style="height: 6.8rem">
               <router-link :to="{name: 'board', params: {boardId: board._id}}">
-                <div class="card-header text-dark">{{ board.title }}</div>
+                <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
               </router-link>
 
               <ul class="list-group list-group-flush">
@@ -81,5 +81,9 @@ a {
   background-color: rgb(75, 75, 75) !important;
   color: white !important;
   text-decoration: none !important;
+}
+
+.card-header {
+  transition: background-color 0.5s ease, color 0.5s ease !important;
 }
 </style>
