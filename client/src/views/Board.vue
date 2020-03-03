@@ -9,7 +9,7 @@
           </div>
           <div class="card-header">
             <span v-if="board.description">Description: {{board.description}}</span>
-            <span v-else>This has no description!</span>
+            <span v-else>This board has no description!</span>
           </div>
           <ul class="list-group list-group-flush bg-dark">
             <li>
@@ -32,7 +32,9 @@
         </div>
       </div>
     </div>
-    <div class="row text-center"></div>
+    <div class="row text-center">
+      <div class="col-md-4 py-3" v-for="list in lists" :key="list._id"></div>
+    </div>
   </div>
 </template>
 
@@ -53,13 +55,14 @@ export default {
         "setActiveBoard",
         this.$store.state.boards.find(b => b.id == this.$route.params.boardId)
       );
-      console.log("Active board: ", this.$store.state.activeBoard);
     }
   },
   computed: {
     board() {
-      //FIXME This does not work on page reload because the activeBoard is empty in the store
       return this.$store.state.activeBoard;
+    },
+    lists() {
+      return this.$store.state.lists;
     }
   },
   methods: {
