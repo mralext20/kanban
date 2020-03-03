@@ -44,7 +44,7 @@
       <!-- Board -->
       <div class="col-12">
         <transition-group tag="div" class="row" name="fade" mode="out-in">
-          <div class="col-md-4 py-3" v-for="board in boards" :key="board._id">
+          <div class="col-md-4 py-3" v-for="board in boards" :key="board._id" :boardData="boardObj">
             <div class="card mx-auto" style="height: 6.8rem">
               <router-link :to="{name: 'board', params: {boardId: board._id}}">
                 <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
@@ -84,6 +84,9 @@ export default {
     addBoard() {
       this.$store.dispatch("addBoard", this.newBoard);
       this.newBoard = { title: "", description: "" };
+    },
+    setActive() {
+      this.$store.dispatch("setActiveBoard", this.boardData);
     }
   }
 };
