@@ -1,9 +1,11 @@
-<template></template>
+<template>
+  <li>{{taskData.body}}</li>
+</template>
 
 <script>
 export default {
   name: "Task",
-  props: [taskData],
+  props: ["taskData"],
   data() {
     return {
       newComment: {}

@@ -8,12 +8,12 @@
             <span>{{listData.title}}</span>
           </div>
           <div class="col-3">
-            <button @click="deleteList" class="btn btn-sm btn-danger mr-3">Delete</button>
+            <button @click="deleteList" class="btn btn-sm btn-danger px-1 mr-3">Delete</button>
           </div>
         </div>
       </div>
       <ul class="list-group list-group-flush">
-        <li>
+        <li class="bg-dark">
           <form @submit.prevent="addTask" class="form-inline">
             <button type="submit" class="btn btn-sm btn-secondary mx-auto mr-3 my-2">Add Task</button>
             <input
@@ -26,18 +26,19 @@
             />
           </form>
         </li>
-        <li
+        <task
           v-for="task in listData.tasks"
           :key="task.id"
           :taskData="task"
           class="list-group-item"
-        >{{task.body}}</li>
+        />
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import Task from "../components/TaskComponent";
 export default {
   name: "List",
   data() {
@@ -52,6 +53,9 @@ export default {
     deleteList() {
       this.$store.dispatch("deleteList", this.listData.id);
     }
+  },
+  components: {
+    Task
   }
 };
 </script>
