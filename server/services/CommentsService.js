@@ -35,7 +35,9 @@ class CommentsService {
   }
 
   async delete(id, userEmail) {
-    let data = await dbContext.Tasks.findOne({ "comments._id": id, creatorEmail: userEmail }).remove();
+    let data = await dbContext.Tasks.findOne({ "comments._id": id, creatorEmail: userEmail })
+    data.comments.pull(id)
+    data.save()
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this comment");
     }
