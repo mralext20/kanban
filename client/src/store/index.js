@@ -33,9 +33,6 @@ export default new Vuex.Store({
     setActiveBoard(state, board) {
       state.activeBoard = board
     },
-    setLists(state, lists) {
-      state.lists = lists
-    },
     addList(state, list) {
       state.activeBoard.lists.push(list)
     },
@@ -46,7 +43,6 @@ export default new Vuex.Store({
     addTask(state, task) {
       let list = state.activeBoard.lists.find(l => l.id == task.listId)
       list.tasks.push(task)
-
     }
   },
   actions: {
