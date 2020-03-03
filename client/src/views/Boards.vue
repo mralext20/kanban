@@ -75,6 +75,11 @@ export default {
 a {
   text-decoration: none;
 }
+
+.card {
+  opacity: 90%;
+}
+
 .card-header:hover {
   cursor: pointer;
   transition: background-color 0.5s ease, color 0.5s ease !important;

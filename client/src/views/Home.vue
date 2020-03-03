@@ -53,12 +53,16 @@ span {
   color: white;
 }
 a {
-  text-decoration: underline;
+  transition: color 0.4s ease, text-shadow 0.4s ease !important;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  text-decoration: none;
 }
 
 a:hover {
-  transition: color 0.4s ease !important;
-  color: yellow !important;
+  transition: color 0.4s ease, text-shadow 0.4s ease !important;
+  color: darkgray !important;
+  text-shadow: 1px 1px 2px gray;
 }
 #login-span:hover {
   color: lightblue;
