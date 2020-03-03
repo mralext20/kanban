@@ -11,9 +11,22 @@
             <span v-if="board.description">Description: {{board.description}}</span>
             <span v-else>This has no description!</span>
           </div>
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush bg-dark">
             <li>
-              <button class="btn btn-sm btn-secondary my-2">Create New List</button>
+              <form @submit.prevent="addList" class="form-inline">
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-secondary ml-auto mr-3 my-2"
+                >Create New List</button>
+                <input
+                  class="form-control mr-auto"
+                  type="text"
+                  name="title"
+                  placeholder="List Title..."
+                  v-model="newList.title"
+                  required
+                />
+              </form>
             </li>
           </ul>
         </div>
@@ -27,6 +40,11 @@
 import List from "../components/ListComponent";
 export default {
   name: "Board",
+  data() {
+    return {
+      newList: { boardId: this.$route.params.boardId, title: "" }
+    };
+  },
   mounted() {
     if (!this.$store.state.boards.length) {
       this.$store.dispatch("getBoardById", this.$route.params.boardId);
@@ -42,6 +60,11 @@ export default {
     board() {
       //FIXME This does not work on page reload because the activeBoard is empty in the store
       return this.$store.state.activeBoard;
+    }
+  },
+  methods: {
+    addList() {
+      this.$store.dispatch("addList", this.newList);
     }
   },
   components: {
