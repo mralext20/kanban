@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <p>{{listData.title}}</p>
+</template>
 
 <script>
 export default {

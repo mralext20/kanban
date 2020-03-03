@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="row text-center">
-      <div class="col-md-4 py-3" v-for="list in lists" :key="list._id"></div>
+      <list class="col-md-2 py-3" v-for="list in board.lists" :key="list._id" :listData="list"></list>
     </div>
   </div>
 </template>
