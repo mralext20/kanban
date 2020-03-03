@@ -6,7 +6,7 @@ class CommentsService {
   async getById(id) {
     let data = await dbContext.Tasks.findOne({ "comments._id": id });
     if (!data) {
-      throw new BadRequest("Invalid ID or you do not own this board");
+      throw new BadRequest("Invalid ID or you do not own this comment");
     }
     let comment = data.comments.filter(c => c.id == id)
     return comment;
@@ -14,7 +14,7 @@ class CommentsService {
 
   async create(rawData) {
     if (!rawData.taskId) {
-      throw new BadRequest("Invalid ID or you do not own this board");
+      throw new BadRequest("Invalid ID or you do not own this comment");
     }
     let data = await dbContext.Tasks.findOne({ _id: rawData.taskId });
     let comment = data.comments.create(rawData);
@@ -23,17 +23,21 @@ class CommentsService {
   }
 
   async edit(id, userEmail, update) {
-    let data = await (await dbContext.Tasks.findOne({ "comments._id": id, creatorEmail: userEmail })).updateOne(update, { new: true });
-    if (!data) {
-      throw new BadRequest("Invalid ID or you do not own this board");
+    let data = await dbContext.Tasks.findOne({ "comments._id": id, creatorEmail: userEmail });
+    let comments = data.comments
+    let commentIndex = comments.findIndex(c => c.id == id)
+    if (commentIndex === -1) {
+      throw new BadRequest("Invalid ID or you do not own this comment");
     }
-    return data;
+    comments[commentIndex].body = update.body || comments[commentIndex].body;
+    await data.save()
+    return comments[commentIndex];
   }
 
   async delete(id, userEmail) {
     let data = await dbContext.Tasks.findOne({ "comments._id": id, creatorEmail: userEmail }).remove();
     if (!data) {
-      throw new BadRequest("Invalid ID or you do not own this board");
+      throw new BadRequest("Invalid ID or you do not own this comment");
     }
   }
 
