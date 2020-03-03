@@ -35,6 +35,13 @@ export default new Vuex.Store({
     },
     setLists(state, lists) {
       state.lists = lists
+    },
+    addList(state, list) {
+      state.activeBoard.lists.push(list)
+    },
+    deleteList(state, id) {
+      let lists = state.activeBoard.lists.filter(l => l.id != id)
+      state.activeBoard.lists = lists
     }
   },
   actions: {
@@ -88,19 +95,21 @@ export default new Vuex.Store({
 
     //#region -- LISTS --
     getLists({ commit }, boardId) {
-      api.get('boards/' + boardId)
+      api.get(`boards/${boardId}`)
         .then(res => {
           commit('setLists', res.data.lists)
         })
     },
 
+    async addList({ commit }, listData) {
+      let res = await api.post('lists', listData)
+      commit("addList", res.data)
+    },
 
-    addList({ dispatch }, listData) {
-      api.post('lists', listData)
-        .then(serverList => {
-          dispatch('getLists', listData.boardId)
-        })
-    }
+    async deleteList({ commit }, listData) {
+      let res = await api.delete(`lists/${listData}`)
+      commit("deleteList", listData)
+    },
 
     //#endregion
   }
