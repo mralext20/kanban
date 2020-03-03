@@ -88,7 +88,8 @@ export default {
     setActive() {
       this.$store.dispatch("setActiveBoard", this.boardData);
     }
-  }
+  },
+  components: {}
 };
 </script>
 
