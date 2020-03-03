@@ -44,7 +44,8 @@ export default {
   data() {
     return {
       newTask: {
-        body: ""
+        body: "",
+        listId: this.listData.id
       }
     };
   },
@@ -52,6 +53,10 @@ export default {
   methods: {
     deleteList() {
       this.$store.dispatch("deleteList", this.listData.id);
+    },
+    addTask() {
+      this.$store.dispatch("addTask", { ...this.newTask });
+      this.newTask.body = "";
     }
   },
   components: {

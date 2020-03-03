@@ -42,6 +42,11 @@ export default new Vuex.Store({
     deleteList(state, id) {
       let lists = state.activeBoard.lists.filter(l => l.id != id)
       state.activeBoard.lists = lists
+    },
+    addTask(state, task) {
+      let list = state.activeBoard.lists.find(l => l.id == task.listId)
+      list.tasks.push(task)
+
     }
   },
   actions: {
@@ -110,6 +115,16 @@ export default new Vuex.Store({
       let res = await api.delete(`lists/${listData}`)
       commit("deleteList", listData)
     },
+
+    //#endregion 
+
+    //#region -- TASKS --
+
+    async addTask({ commit, }, taskData) {
+      let res = await api.post('tasks', taskData)
+      commit("addTask", res.data)
+    }
+
 
     //#endregion
   }
