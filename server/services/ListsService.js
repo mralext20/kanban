@@ -8,11 +8,17 @@ class ListsService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+    await data.populate("creator", "name picture")
+      .populate("tasks")
+      .execPopulate()
     return data;
   }
 
   async create(rawData) {
     let data = await dbContext.Lists.create(rawData);
+    await data.populate("creator", "name picture")
+      .populate("tasks")
+      .execPopulate()
     return data;
   }
 
@@ -21,6 +27,9 @@ class ListsService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+    await data.populate("creator", "name picture")
+      .populate("tasks")
+      .execPopulate()
     return data;
   }
 

@@ -4,15 +4,18 @@ import { BadRequest } from "../utils/Errors";
 
 class TasksService {
   async getById(id, userEmail) {
-    let data = await dbContext.Tasks.findOne({ _id: id, creatorEmail: userEmail });
+    let data = await (await dbContext.Tasks.findOne({ _id: id, creatorEmail: userEmail }));
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+    await data.populate("creator", "name picture").execPopulate();
     return data;
   }
 
   async create(rawData) {
     let data = await dbContext.Tasks.create(rawData);
+    await data.populate("creator").execPopulate()
+
     return data;
   }
 
@@ -21,6 +24,7 @@ class TasksService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+    await data.populate("creator", "name picture").execPopulate()
     return data;
   }
 
@@ -29,6 +33,7 @@ class TasksService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
+    await data.populate("creator", "name picture").execPopulate()
   }
 
 }
