@@ -15,19 +15,21 @@
         >Looks pretty empty here huh? Once you start adding some boards they will appear below!</h3>
       </div>
       <!-- Board -->
-      <transition-group tag="div" name="fade" mode="out-in">
-        <div class="col-3 pt-3" v-for="board in boards" :key="board._id">
-          <div class="card mx-auto" style="width: 18rem;">
-            <router-link :to="{name: 'board', params: {boardId: board._id}}">
-              <div class="card-header text-dark">{{ board.title }}</div>
-            </router-link>
+      <div class="col-12">
+        <transition-group tag="div" class="row" name="fade" mode="out-in">
+          <div class="col-4 py-3" v-for="board in boards" :key="board._id">
+            <div class="card mx-auto" style="height: 8rem">
+              <router-link :to="{name: 'board', params: {boardId: board._id}}">
+                <div class="card-header text-dark">{{ board.title }}</div>
+              </router-link>
 
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item text-dark">{{board.description}}</li>
-            </ul>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-dark">{{board.description}}</li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </transition-group>
+        </transition-group>
+      </div>
     </div>
   </div>
 </template>
