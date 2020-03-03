@@ -8,7 +8,8 @@ class CommentsService {
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this board");
     }
-    return data;
+    let comment = data.comments.filter(c => c.id == id)
+    return comment;
   }
 
   async create(rawData) {

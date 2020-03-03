@@ -4,8 +4,9 @@ let ObjectId = Schema.Types.ObjectId
 
 const CommentSchema = new Schema({
   body: { type: String, required: true },
-  creatorEmail: { type: String, required: true }
-})
+  creatorEmail: { type: String, required: true },
+},
+  { timestamps: true, toJSON: { virtuals: true } })
 
 
 CommentSchema.virtual("creator",
