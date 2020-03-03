@@ -4,25 +4,29 @@
       <div class="col-12 text-dark">
         <div class="card mx-auto" style="width: 30rem;">
           <div class="card-header">
-            <span v-if="board.title">{{board.title}}</span>
+            <span v-if="board.title">Title: {{board.title}}</span>
             <span v-else>This board has no title!</span>
           </div>
-          <div class="card-header">{{board.description}}</div>
+          <div class="card-header">
+            <span v-if="board.description">Description: {{board.description}}</span>
+            <span v-else>This has no description!</span>
+          </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">List 1</li>
-            <li class="list-group-item">List 2</li>
-            <li class="list-group-item">List 3</li>
+            <li>
+              <button class="btn btn-sm btn-secondary my-2">Create New List</button>
+            </li>
           </ul>
         </div>
       </div>
     </div>
+    <div class="row text-center"></div>
   </div>
 </template>
 
 <script>
+import List from "../components/ListComponent";
 export default {
-  name: "board",
-  props: ["boardId"],
+  name: "Board",
   mounted() {
     if (!this.$store.state.boards.length) {
       this.$store.dispatch("getBoardById", this.$route.params.boardId);
@@ -39,6 +43,9 @@ export default {
       //FIXME This does not work on page reload because the activeBoard is empty in the store
       return this.$store.state.activeBoard;
     }
+  },
+  components: {
+    List
   }
 };
 </script>
