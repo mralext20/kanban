@@ -32,11 +32,9 @@
         </div>
       </div>
     </div>
-    <div class="row text-center">
-      <transition name="fade">
-        <list v-for="list in board.lists" :key="list._id" :listData="list"></list>
-      </transition>
-    </div>
+    <transition-group class="row" name="fade" mode="out-in">
+      <list v-for="list in board.lists" :key="list._id" :listData="list" />
+    </transition-group>
   </div>
 </template>
 
@@ -86,6 +84,10 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.board {
+  overflow-x: hidden;
 }
 
 /* Extra small devices (phones, 600px and down) */

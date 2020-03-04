@@ -43,14 +43,14 @@
             />
           </form>
         </li>
-        <transition name="fade">
+        <transition-group class="col-12" name="fade" mode="out-in">
           <task
             v-for="task in listData.tasks"
             :key="task.id"
             :taskData="task"
             class="list-group-item"
           />
-        </transition>
+        </transition-group>
       </ul>
     </div>
   </div>
@@ -130,10 +130,6 @@ li#delete-list:hover {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
-
-.card {
-  width: auto !important;
 }
 
 .btn {
