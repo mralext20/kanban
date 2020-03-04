@@ -26,12 +26,14 @@
             />
           </form>
         </li>
-        <task
-          v-for="task in listData.tasks"
-          :key="task.id"
-          :taskData="task"
-          class="list-group-item"
-        />
+        <transition name="fade">
+          <task
+            v-for="task in listData.tasks"
+            :key="task.id"
+            :taskData="task"
+            class="list-group-item"
+          />
+        </transition>
       </ul>
     </div>
   </div>
@@ -66,6 +68,15 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.35s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .card {
   width: auto !important;
 }

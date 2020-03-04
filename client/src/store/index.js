@@ -35,6 +35,7 @@ export default new Vuex.Store({
       state.activeBoard.lists.push(list)
     },
     deleteList(state, id) {
+      debugger
       let lists = state.activeBoard.lists.filter(l => l.id != id)
       state.activeBoard.lists = lists
     },

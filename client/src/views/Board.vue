@@ -33,7 +33,9 @@
       </div>
     </div>
     <div class="row text-center">
-      <list v-for="list in board.lists" :key="list._id" :listData="list"></list>
+      <transition name="fade">
+        <list v-for="list in board.lists" :key="list._id" :listData="list"></list>
+      </transition>
     </div>
   </div>
 </template>
@@ -76,7 +78,16 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.35s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .card {
