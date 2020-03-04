@@ -24,7 +24,7 @@
         type="button"
         data-toggle="collapse"
         data-target=".multi-collapse"
-      >View {{taskData.comments.length}} Comment{{taskData.comments.length == 1 ? "s": ""}}</button>
+      >View {{taskData.comments.length}} Comment{{taskData.comments.length == 1 ? "": "s"}}</button>
       <div class="row">
         <div class="col">
           <div class="col">
@@ -32,7 +32,7 @@
               v-for="comment in taskData.comments"
               :key="comment.id"
               class="collapse multi-collapse"
-            >{{comment.body}}</div>
+            >{{comment}}</div>
           </div>
         </div>
       </div>
