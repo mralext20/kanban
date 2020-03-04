@@ -11,25 +11,27 @@
           <div class="col-md-4">
             <div class="form-row">
               <form class="form-inline" @submit.prevent="addBoard">
-                <div class="col-md-4">
-                  <input
-                    class="form-control form-control-sm"
-                    type="text"
-                    placeholder="Board Title..."
-                    v-model="newBoard.title"
-                    required
-                  />
-                </div>
-                <div class="col-md-4 my-1">
-                  <input
-                    class="form-control form-control-sm"
-                    type="text"
-                    placeholder="Board Description..."
-                    v-model="newBoard.description"
-                  />
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-secondary btn-sm" type="submit">Create Board</button>
+                <div class="row">
+                  <div class="col-md-4">
+                    <input
+                      class="form-control form-control-sm"
+                      type="text"
+                      placeholder="Board Title..."
+                      v-model="newBoard.title"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-4 my-1">
+                    <input
+                      class="form-control form-control-sm"
+                      type="text"
+                      placeholder="Board Description..."
+                      v-model="newBoard.description"
+                    />
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-secondary btn-sm" type="submit">Create Board</button>
+                  </div>
                 </div>
               </form>
             </div>
@@ -44,7 +46,7 @@
       <!-- Board -->
       <div class="col-12">
         <transition-group tag="div" class="row" name="fade" mode="out-in">
-          <div class="col-md-4 py-3" v-for="board in boards" :key="board._id">
+          <div class="col-md-3 py-3" v-for="board in boards" :key="board._id">
             <div class="card mx-auto my-3">
               <router-link :to="{name: 'board', params: {boardId: board._id}}">
                 <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
@@ -106,7 +108,8 @@ export default {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .form-control {
-    margin: auto;
+    margin: auto !important;
+    margin-top: 0.3rem !important;
   }
 }
 

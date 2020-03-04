@@ -8,7 +8,24 @@
             <span>{{listData.title}}</span>
           </div>
           <div class="col-3">
-            <button @click="deleteList" class="btn btn-sm btn-danger px-1 mr-3">Delete</button>
+            <div class="btn-group dropright">
+              <button
+                type="button"
+                class="btn btn-secondary dropdown-toggle caret-off px-1"
+                data-toggle="dropdown"
+              >
+                <i class="fas fa-cog"></i>
+              </button>
+              <div class="dropdown-menu text-center">
+                <!-- Dropdown menu links -->
+                <li class="py-1">
+                  <i class="fas fa-edit"></i> Edit List Title
+                </li>
+                <li id="delete-list" class="py-1" @click="deleteList">
+                  <i class="fas fa-trash-alt"></i> Delete
+                </li>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -26,12 +43,14 @@
             />
           </form>
         </li>
-        <task
-          v-for="task in listData.tasks"
-          :key="task.id"
-          :taskData="task"
-          class="list-group-item"
-        />
+        <transition name="fade">
+          <task
+            v-for="task in listData.tasks"
+            :key="task.id"
+            :taskData="task"
+            class="list-group-item"
+          />
+        </transition>
       </ul>
     </div>
   </div>
@@ -66,6 +85,53 @@ export default {
 </script>
 
 <style scoped>
+li:hover {
+  cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+  background-color: rgb(75, 75, 75) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+li#delete-list:hover {
+  cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+  background-color: rgb(177, 0, 0) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
+}
+
+.dropdown-menu {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-50px) !important;
+  transition: 0.2s ease all;
+}
+.dropdown-menu.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(50px) !important;
+  transition: 0.2s ease all;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.35s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .card {
   width: auto !important;
 }
