@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import NotificationService from "../NotificationService.js";
 import List from "../components/ListComponent";
 export default {
   name: "Board",
@@ -91,10 +92,15 @@ export default {
     }
   },
   methods: {
-    deleteBoard() {
-      if (window.confirm("Are you sure you want to delete this board?")) {
+    async deleteBoard() {
+      if (
+        await NotificationService.confirmAction(
+          "Are you sure you want delete this board?"
+        )
+      ) {
         this.$store.dispatch("deleteBoard", this.board);
         this.$router.push({ path: "/boards" });
+        NotificationService.toast("Successfully deleted!");
       }
     },
     addList() {

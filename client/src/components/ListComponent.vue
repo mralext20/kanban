@@ -59,6 +59,7 @@
 
 <script>
 import Task from "../components/TaskComponent";
+import NotificationService from "../NotificationService";
 export default {
   name: "List",
   data() {
@@ -71,8 +72,15 @@ export default {
   },
   props: ["listData"],
   methods: {
-    deleteList() {
-      this.$store.dispatch("deleteList", this.listData.id);
+    async deleteList() {
+      if (
+        await NotificationService.confirmAction(
+          "Are you sure you want to delete this list?"
+        )
+      ) {
+        this.$store.dispatch("deleteList", this.listData.id);
+        NotificationService.toast("Successfully deleted!");
+      }
     },
     addTask() {
       this.$store.dispatch("addTask", { ...this.newTask });
