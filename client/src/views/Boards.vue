@@ -44,7 +44,7 @@
       <!-- Board -->
       <div class="col-12">
         <transition-group tag="div" class="row" name="fade" mode="out-in">
-          <div class="col-md-4 py-3" v-for="board in boards" :key="board._id">
+          <div class="col-md-3 py-3" v-for="board in boards" :key="board._id">
             <div class="card mx-auto my-3">
               <router-link :to="{name: 'board', params: {boardId: board._id}}">
                 <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
