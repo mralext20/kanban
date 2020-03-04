@@ -32,14 +32,13 @@ export default new Vuex.Store({
       state.activeBoard = board
     },
     addList(state, list) {
-      state.activeBoard.lists.push(list)
+      Vue.set(state.activeBoard.lists, list.id, list)
     },
     deleteList(state, id) {
-      let lists = state.activeBoard.lists.filter(l => l.id != id)
-      state.activeBoard.lists = lists
+      Vue.delete(state.activeBoard.lists, id)
     },
     addTask(state, task) {
-      let list = state.activeBoard.lists.find(l => l.id == task.listId)
+      let list = state.activeBoard.lists[task.listId]
       list.tasks.push(task)
     },
     moveTask(state, { task, target }) {
