@@ -4,8 +4,32 @@
       <div class="col-12 text-dark">
         <div class="card mx-auto">
           <div class="card-header">
-            <span v-if="board.title">Title: {{board.title}}</span>
-            <span v-else>This board has no title!</span>
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-6">
+                <span v-if="board.title">Title: {{board.title}}</span>
+                <span v-else>This board has no title!</span>
+              </div>
+              <div class="col-3">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm dropdown-toggle caret-off"
+                  data-toggle="dropdown"
+                >
+                  <i class="fas fa-cog"></i>
+                </button>
+                <div class="dropdown-menu text-center">
+                  <!-- Dropdown menu links -->
+                  <h6 class="dropdown-header">Board Options</h6>
+                  <li class="py-1">
+                    <i class="fas fa-edit"></i> Edit Board Title
+                  </li>
+                  <li id="delete-list" class="py-1" @click="deleteBoard">
+                    <i class="fas fa-trash-alt"></i> Delete Board
+                  </li>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-header">
             <span v-if="board.description">Description: {{board.description}}</span>
@@ -66,6 +90,10 @@ export default {
     }
   },
   methods: {
+    deleteBoard() {
+      this.$store.dispatch("deleteBoard", this.board);
+      this.$router.push({ path: "/boards" });
+    },
     addList() {
       this.$store.dispatch("addList", this.newList);
     }
@@ -77,6 +105,26 @@ export default {
 </script>
 
 <style scoped>
+.dropdown-menu h6 {
+  text-shadow: none;
+}
+
+.dropdown-menu li:hover {
+  cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+  background-color: rgb(75, 75, 75) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+li#delete-list:hover {
+  cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease !important;
+  background-color: rgb(177, 0, 0) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.35s ease;
@@ -84,6 +132,13 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
 }
 
 .board {

@@ -31,6 +31,11 @@ export default new Vuex.Store({
     setActiveBoard(state, board) {
       state.activeBoard = board
     },
+
+    deleteBoard(state, id) {
+      state.boards = state.boards.filter(b => b.id != id)
+    },
+
     addList(state, list) {
       Vue.set(state.activeBoard.lists, list.id, list)
     },
@@ -98,6 +103,12 @@ export default new Vuex.Store({
     async addBoard({ commit, dispatch }, boardData) {
       let res = await api.post('boards', boardData)
       dispatch('getBoards')
+
+    },
+
+    async deleteBoard({ commit }, board) {
+      let res = await api.delete(`boards/${board.id}`, board)
+      commit('deleteBoard')
 
     },
 
