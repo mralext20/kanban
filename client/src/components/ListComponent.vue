@@ -11,7 +11,7 @@
             <div class="btn-group dropright">
               <button
                 type="button"
-                class="btn btn-secondary dropdown-toggle"
+                class="btn btn-secondary dropdown-toggle caret-off px-1"
                 data-toggle="dropdown"
               >
                 <i class="fas fa-cog"></i>
@@ -101,18 +101,25 @@ li#delete-list:hover {
   text-decoration: none !important;
 }
 
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
+}
+
 .dropdown-menu {
   display: block;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(-50px);
+  transform: translateX(-50px) !important;
   transition: 0.2s ease all;
 }
 .dropdown-menu.show {
   display: block;
   visibility: visible;
   opacity: 1;
-  transform: translateX(50px);
+  transform: translateX(50px) !important;
   transition: 0.2s ease all;
 }
 
