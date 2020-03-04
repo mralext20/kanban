@@ -1,64 +1,60 @@
 <template>
   <div class="boards container-fluid">
-    <div class="row">
-      <!-- Form Column -->
-      <div class="col-12">
-        <div class="row">
-          <div class="col-12">
-            <h2>Your Boards</h2>
-          </div>
-          <div class="col-4"></div>
-          <div class="col-md-4">
-            <div class="form-row">
-              <form class="form-inline" @submit.prevent="addBoard">
-                <div class="row">
-                  <div class="col-md-4">
-                    <input
-                      class="form-control form-control-sm"
-                      type="text"
-                      placeholder="Board Title..."
-                      v-model="newBoard.title"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-4 my-1">
-                    <input
-                      class="form-control form-control-sm"
-                      type="text"
-                      placeholder="Board Description..."
-                      v-model="newBoard.description"
-                    />
-                  </div>
-                  <div class="col-md-4">
-                    <button class="btn btn-secondary btn-sm" type="submit">Create Board</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="col-4"></div>
+    <!-- Form Column -->
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <h2>Your Boards</h2>
         </div>
-        <h3
-          class="pt-5"
-          v-if="!boards"
-        >Looks pretty empty here huh? Once you start adding some boards they will appear below!</h3>
-      </div>
-      <!-- Board -->
-      <div class="col-12">
-        <transition-group tag="div" class="row" name="fade" mode="out-in">
-          <div class="col-md-3 py-3" v-for="board in boards" :key="board._id">
-            <div class="card mx-auto my-3">
-              <router-link :to="{name: 'board', params: {boardId: board._id}}">
-                <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
-              </router-link>
-
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-dark">{{board.description}}</li>
-              </ul>
-            </div>
+        <div class="col-4"></div>
+        <div class="col-md-4">
+          <div class="form-row">
+            <form class="form-inline" @submit.prevent="addBoard">
+              <div class="col-md-4">
+                <input
+                  class="form-control form-control-sm"
+                  type="text"
+                  placeholder="Board Title..."
+                  v-model="newBoard.title"
+                  required
+                />
+              </div>
+              <div class="col-md-4 my-1">
+                <input
+                  class="form-control form-control-sm"
+                  type="text"
+                  placeholder="Board Description..."
+                  v-model="newBoard.description"
+                />
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-secondary btn-sm" type="submit">Create Board</button>
+              </div>
+            </form>
           </div>
-        </transition-group>
+        </div>
+        <div class="col-4"></div>
       </div>
+      <h3
+        class="pt-5"
+        v-if="!boards"
+      >Looks pretty empty here huh? Once you start adding some boards they will appear below!</h3>
+    </div>
+    <!-- Board -->
+    <div class="col-12">
+      <transition-group tag="div" class="row" name="fade" mode="out-in">
+        <div class="col-md-3 py-3" v-for="board in boards" :key="board._id">
+          <div class="card mx-auto my-3">
+            <router-link :to="{name: 'board', params: {boardId: board._id}}">
+              <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
+            </router-link>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-dark">{{board.description}}</li>
+            </ul>
+          </div>
+        </div>
+      </transition-group>
     </div>
   </div>
 </template>
