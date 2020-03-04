@@ -91,8 +91,10 @@ export default {
   },
   methods: {
     deleteBoard() {
-      this.$store.dispatch("deleteBoard", this.board);
-      this.$router.push({ path: "/boards" });
+      if (window.confirm("Are you sure you want to delete this board?")) {
+        this.$store.dispatch("deleteBoard", this.board);
+        this.$router.push({ path: "/boards" });
+      }
     },
     addList() {
       this.$store.dispatch("addList", this.newList);
