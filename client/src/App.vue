@@ -36,14 +36,14 @@ export default {
 @import "./assets/_variables.scss";
 @import "bootstrap";
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-shadow: 2px 2px 2px black;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+// text-shadow: 2px 2px 2px black;
+// }
 
 .fade-enter-active,
 .fade-leave-active {

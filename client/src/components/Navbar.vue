@@ -42,6 +42,7 @@
 
 <script>
 import axios from "axios";
+import NotificationService from "../NotificationService.js";
 
 let _api = axios.create({
   baseURL: "https://localhost:3000",
@@ -54,6 +55,7 @@ export default {
       await this.$auth.loginWithPopup();
       this.$store.dispatch("setBearer", this.$auth.bearer);
       this.$store.dispatch("getProfile");
+      NotificationService.toast("Logged In");
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
     },
@@ -61,6 +63,7 @@ export default {
       await this.$auth.logout();
       this.$store.dispatch("resetBearer");
       this.$router.push({ name: "home" });
+      NotificationService.toast("Logged Out");
     }
   }
 };
