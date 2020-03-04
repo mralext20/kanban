@@ -1,16 +1,15 @@
 <template>
-  <li>
+  <li class="task">
     {{taskData.body}}
     <div class="dropdown">
       <button
-        class="btn btn-secondary dropdown-toggle"
+        v-if="Object.keys(board.lists).length > 1"
+        class="btn btn-secondary btn-sm dropdown-toggle"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
       >Move To..</button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu">
         <button
           v-for="list in board.lists"
           :key="list.id"

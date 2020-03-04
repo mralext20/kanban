@@ -18,6 +18,7 @@
               </button>
               <div class="dropdown-menu text-center">
                 <!-- Dropdown menu links -->
+                <h6 class="dropdown-header">List Options</h6>
                 <li class="py-1">
                   <i class="fas fa-edit"></i> Edit List Title
                 </li>
@@ -85,7 +86,11 @@ export default {
 </script>
 
 <style scoped>
-li:hover {
+.dropdown-menu h6 {
+  text-shadow: none;
+}
+
+.dropdown-menu li:hover {
   cursor: pointer;
   transition: background-color 0.5s ease, color 0.5s ease !important;
   background-color: rgb(75, 75, 75) !important;
