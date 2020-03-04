@@ -48,7 +48,6 @@
             <router-link :to="{name: 'board', params: {boardId: board._id}}">
               <div title="View Board Details" class="card-header text-dark">{{ board.title }}</div>
             </router-link>
-
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-dark">{{board.description}}</li>
             </ul>

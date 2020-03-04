@@ -14,10 +14,6 @@
           <ul class="list-group list-group-flush bg-dark">
             <li>
               <form @submit.prevent="addList" class="form-inline">
-                <button
-                  type="submit"
-                  class="btn btn-sm btn-secondary mx-auto mr-3 my-2"
-                >Create New List</button>
                 <input
                   class="form-control mx-auto my-2"
                   type="text"
@@ -26,6 +22,10 @@
                   v-model="newList.title"
                   required
                 />
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-secondary mx-auto mr-3 my-2"
+                >Create New List</button>
               </form>
             </li>
           </ul>

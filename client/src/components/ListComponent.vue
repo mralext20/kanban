@@ -33,7 +33,6 @@
       <ul class="list-group list-group-flush">
         <li class="bg-dark">
           <form @submit.prevent="addTask" class="form-inline">
-            <button type="submit" class="btn btn-sm btn-secondary mx-auto mr-3 my-2">Add Task</button>
             <input
               class="form-control form-control-sm mx-auto my-2"
               type="text"
@@ -42,6 +41,7 @@
               v-model="newTask.body"
               required
             />
+            <button type="submit" class="btn btn-sm btn-secondary mx-auto mr-3 my-2">Add Task</button>
           </form>
         </li>
         <transition-group class="col-12" name="fade" mode="out-in">
