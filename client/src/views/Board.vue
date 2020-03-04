@@ -35,6 +35,7 @@
             <span v-if="board.description">Description: {{board.description}}</span>
             <span v-else>This board has no description!</span>
           </div>
+          <!-- Add List Group -->
           <ul class="list-group list-group-flush bg-dark">
             <li>
               <form @submit.prevent="addList" class="form-inline">
@@ -56,7 +57,7 @@
         </div>
       </div>
     </div>
-    <transition-group class="row" name="fade" mode="out-in">
+    <transition-group tag="div" class="row pb-5" name="fade" mode="out-in">
       <list v-for="list in board.lists" :key="list._id" :listData="list" />
     </transition-group>
   </div>
