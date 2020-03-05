@@ -51,6 +51,11 @@ export default {
 
 
 <style scoped>
+h1,
+h5 {
+  text-shadow: 2px 2px 2px black;
+}
+
 span {
   color: white;
 }
