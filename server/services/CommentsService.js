@@ -17,9 +17,10 @@ class CommentsService {
       throw new BadRequest("Invalid ID or you do not own this comment");
     }
     let data = await dbContext.Tasks.findOne({ _id: rawData.taskId });
-    let comment = data.comments.create(rawData);
+    let comment = data.comments.push(rawData);
     await data.save()
-    return comment;
+    data = await dbContext.Tasks.findOne({ _id: rawData.taskId });
+    return data.comments[comment - 1];
   }
 
   async edit(id, userEmail, update) {

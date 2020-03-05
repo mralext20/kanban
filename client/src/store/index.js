@@ -10,7 +10,7 @@ let base = window.location.host.includes('localhost') ? '//localhost:3000/' : '/
 
 let api = Axios.create({
   baseURL: base + "api/",
-  timeout: 3000,
+  timeout: 30000,
   withCredentials: true
 })
 
@@ -42,17 +42,19 @@ export default new Vuex.Store({
       Vue.delete(state.activeBoard.lists, id)
     },
     addTask(state, task) {
-      let list = state.activeBoard.lists[task.listId]
-      list.tasks.push(task)
+      Vue.set(state.activeBoard.lists[task.listId].tasks, task.id, task)
     },
     moveTask(state, { task, target }) {
-      let oldList = state.activeBoard.lists[task.listId];
-      oldList = oldList.tasks.filter(t => t.id != task.id)
-      state.activeBoard.lists[task.listId].tasks = oldList;
-
+      Vue.delete(state.activeBoard.lists[task.listId].tasks, task.id)
       task.listId = target // change the task's listId to its new list id
-      state.activeBoard.lists[target].tasks.push(task)
-
+      Vue.set(state.activeBoard.lists[task.listId].tasks, task.id, task)
+    },
+    deleteComment(state, { comment, task }) {
+      let comments = state.activeBoard.lists[task.listId].tasks[task.id].comments.filter(c => c.id != comment.id)
+      state.activeBoard.lists[task.listId].tasks[task.id].comments = comments
+    },
+    addComment(state, { newComment, listId, taskId }) {
+      state.activeBoard.lists[listId].tasks[taskId].comments.push(newComment)
     }
   },
   actions: {
@@ -78,9 +80,16 @@ export default new Vuex.Store({
     async getBoards({ commit, dispatch }) {
       let res = await api.get('boards')
       let data = res.data.map(board => {
-        let lists = [...board.lists]
+        let lists = board.lists
         board.lists = {}
-        lists.forEach(list => board.lists[list.id] = list)
+        lists.forEach(list => {
+          let tasks = list.tasks
+          list.tasks = {}
+          tasks.forEach(task => {
+            list.tasks[task.id] = task
+          });
+          board.lists[list.id] = list
+        })
         return board
       });
       commit('setBoards', data)
@@ -89,9 +98,16 @@ export default new Vuex.Store({
     async getBoardById({ commit, dispatch }, id) {
       try {
         let res = await api.get('boards/' + id)
-        let lists = [...res.data.lists]
+        let lists = res.data.lists
         res.data.lists = {}
-        lists.forEach(list => res.data.lists[list.id] = list)
+        lists.forEach(list => {
+          let tasks = list.tasks
+          list.tasks = {}
+          tasks.forEach(task => {
+            list.tasks[task.id] = task
+          });
+          res.data.lists[list.id] = list
+        })
         commit("setActiveBoard", res.data)
 
       } catch (error) {
@@ -140,9 +156,20 @@ export default new Vuex.Store({
     async moveTasks({ commit }, { task, target }) {
       let res = await api.put(`tasks/${task.id}`, { listId: target })
       commit("moveTask", { task, target })
-    }
+    },
 
 
     //#endregion
+    //#region -- COMMENTS --
+    async deleteComment({ commit }, { comment, task }) {
+      await api.delete(`comments/${comment.id}`)
+      commit("deleteComment", { comment, task })
+    },
+    async addComment({ commit }, { newComment, listId }) {
+      let res = await api.post("comments", newComment)
+      commit("addComment", { newComment: res.data, listId, taskId: newComment.taskId })
+    }
+
+    ////#endregion
   }
 })

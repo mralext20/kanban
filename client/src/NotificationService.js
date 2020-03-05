@@ -45,7 +45,9 @@ export default class NotificationService {
         focusConfirm: false,
         preConfirm: () => {
           return [
+            // @ts-ignore
             document.getElementById('swal-input1').value,
+            // @ts-ignore
             document.getElementById('swal-input2').value
           ];
         }
