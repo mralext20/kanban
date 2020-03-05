@@ -53,6 +53,9 @@ export default new Vuex.Store({
     deleteComment(state, { comment, task }) {
       let comments = state.activeBoard.lists[task.listId].tasks[task.id].comments.filter(c => c.id != comment.id)
       state.activeBoard.lists[task.listId].tasks[task.id].comments = comments
+    },
+    addComment(state, { newComment, listId, taskId }) {
+      state.activeBoard.lists[listId].tasks[taskId].comments.push(newComment)
     }
   },
   actions: {
@@ -162,6 +165,10 @@ export default new Vuex.Store({
     async deleteComment({ commit }, { comment, task }) {
       await api.delete(`comments/${comment.id}`)
       commit("deleteComment", { comment, task })
+    },
+    async addComment({ commit }, { newComment, listId }) {
+      let res = await api.post("comments", newComment)
+      commit("addComment", { newComment: res.data, listId, taskId: newComment.taskId })
     }
 
     ////#endregion

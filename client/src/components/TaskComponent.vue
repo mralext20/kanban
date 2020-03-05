@@ -19,20 +19,34 @@
         >{{list.title}}</button>
       </div>
       <button
-        v-if="taskData.comments.length > 0"
-        class="btn btn-primary my-1"
+        class="btn btn-secondary btn-sm my-1"
         type="button"
         data-toggle="collapse"
+        :data-target="`#collapse-form-${taskData.id}`"
+      >add comment</button>
+      <div class="collapse" :id="`collapse-form-${taskData.id}`">
+        <form class="form-group py-2" @submit="addComment">
+          <input type="text" class="form-controlform-control-sm" v-model="newComment.body" />
+          <button class="btn btn-sm btn-secondary" type="submit">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+      <button
+        v-if="taskData.comments.length > 0"
+        class="btn btn-secondary btn-sm my-1"
+        type="button"
+        data-toggle="collapse"
+        :id="`button-collapse-${taskData.id}`"
         :data-target="`#collapse-${taskData.id}`"
       >View {{taskData.comments.length}} Comment{{taskData.comments.length == 1 ? "": "s"}}</button>
       <div class="row">
         <div class="col">
-          <div class="col">
+          <div class="col collapse" :id="`collapse-${taskData.id}`">
             <div
               v-for="comment in taskData.comments"
               :key="comment.id"
-              class="collapse"
-              :id="`collapse-${taskData.id}`"
+              :class="{show:showingComment}"
             >
               {{comment.body}}
               <button class="btn btn-danger" @click="deleteComment(comment)">
@@ -54,7 +68,12 @@ export default {
   props: ["taskData"],
   data() {
     return {
-      newComment: {}
+      showNewComment: false,
+      showingComment: false,
+      newComment: {
+        body: "",
+        taskId: this.taskData.id
+      }
     };
   },
   methods: {
@@ -72,6 +91,13 @@ export default {
         comment: comment,
         task: this.taskData
       });
+    },
+    addComment() {
+      this.$store.dispatch("addComment", {
+        newComment: { ...this.newComment },
+        listId: this.taskData.listId
+      });
+      this.newComment.body = "";
     }
   },
   computed: {
