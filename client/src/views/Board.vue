@@ -40,17 +40,16 @@
             <li>
               <form @submit.prevent="addList" class="form-inline">
                 <input
-                  class="form-control mx-auto my-2"
+                  class="form-control ml-auto my-2"
                   type="text"
                   name="title"
                   placeholder="List Title..."
                   v-model="newList.title"
                   required
                 />
-                <button
-                  type="submit"
-                  class="btn btn-sm btn-secondary mx-auto mr-3 my-2"
-                >Create New List</button>
+                <button type="submit" class="btn btn-sm btn-secondary ml-3 mr-auto my-2">
+                  <i class="fas fa-plus-square"></i>
+                </button>
               </form>
             </li>
           </ul>

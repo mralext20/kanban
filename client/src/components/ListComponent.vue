@@ -41,7 +41,9 @@
               v-model="newTask.body"
               required
             />
-            <button type="submit" class="btn btn-sm btn-secondary mx-auto my-2">Add Task</button>
+            <button type="submit" class="btn btn-sm btn-secondary mx-auto my-2 px-1">
+              <i class="fas fa-plus-square"></i>
+            </button>
           </form>
         </li>
         <transition-group class="col-12" name="fade" mode="out-in">
