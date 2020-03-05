@@ -5,7 +5,7 @@ export default class NotificationService {
   static async confirmAction(text = "You won't be able to revert this!") {
     try {
       let res = await swal.fire({
-        title: 'Are you sure?',
+        title: 'You good bro?',
         text: text,
         icon: 'warning',
         showCancelButton: true,
@@ -45,7 +45,9 @@ export default class NotificationService {
         focusConfirm: false,
         preConfirm: () => {
           return [
+            // @ts-ignore
             document.getElementById('swal-input1').value,
+            // @ts-ignore
             document.getElementById('swal-input2').value
           ];
         }
