@@ -29,7 +29,7 @@ export default class NotificationService {
       icon: icon,
       timer,
       showConfirmButton: false,
-      position: "top-right",
+      position: "top",
       toast: true
     });
   }

@@ -186,6 +186,15 @@ export default new Vuex.Store({
       let res = await api.put(`tasks/${task.id}`, { listId: target })
       commit("moveTask", { task, target })
     },
+    async editTaskTitle({ commit }, taskData) {
+      try {
+        let res = await api.put(`tasks/${taskData.id}`, { body: taskData.body })
+        await NotificationService.toast("Task Title Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update Task Title", 3500, "error")
+
+      }
+    },
 
 
     //#endregion

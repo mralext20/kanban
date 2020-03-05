@@ -1,6 +1,17 @@
 <template>
   <li class="task">
-    {{taskData.body}}
+    <span v-if="editMode">
+      <form @submit="editTaskTitle">
+        <input v-model="taskData.body" />
+        <button class="btn btn-sm btn-secondary">
+          <i class="fas fa-check"></i>
+        </button>
+      </form>
+    </span>
+    <span v-else>{{taskData.body}}</span>
+    <button class="btn btn-sm btn-secondary" @click="editMode = !editMode">
+      <i class="fas fa-edit"></i>
+    </button>
     <!-- Move to -->
     <div class="dropdown">
       <button
@@ -92,6 +103,7 @@ export default {
   props: ["taskData", "left"],
   data() {
     return {
+      editMode: false,
       showNewComment: false,
       newComment: {
         body: "",
@@ -108,6 +120,7 @@ export default {
         task: this.taskData,
         target: listId
       });
+      NotificationService.toast("Task Moved");
     },
     async deleteComment(comment) {
       if (
@@ -121,6 +134,10 @@ export default {
         });
         NotificationService.toast("Successfully deleted!");
       }
+    },
+    editTaskTitle() {
+      this.$store.dispatch("editTaskTitle", this.taskData);
+      this.editMode = false;
     },
     addComment() {
       this.$store.dispatch("addComment", {
