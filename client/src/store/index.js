@@ -139,7 +139,6 @@ export default new Vuex.Store({
 
     async editBoardDescription({ commit }, boardData) {
       try {
-        throw new Error()
         let res = await api.put(`boards/${boardData.id}`, { description: boardData.description })
         await NotificationService.toast("List Description Changed Successfully")
       } catch (error) {
