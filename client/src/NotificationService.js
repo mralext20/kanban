@@ -5,7 +5,7 @@ export default class NotificationService {
   static async confirmAction(text = "You won't be able to revert this!") {
     try {
       let res = await swal.fire({
-        title: 'Are you sure?',
+        title: 'You good bro?',
         text: text,
         icon: 'warning',
         showCancelButton: true,
