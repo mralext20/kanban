@@ -43,11 +43,7 @@
       <div class="row">
         <div class="col">
           <div class="col collapse" :id="`collapse-${taskData.id}`">
-            <div
-              v-for="comment in taskData.comments"
-              :key="comment.id"
-              :class="{show:showingComment}"
-            >
+            <div v-for="comment in taskData.comments" :key="comment.id">
               {{comment.body}}
               <button class="btn btn-danger" @click="deleteComment(comment)">
                 <i class="fas fa-trash"></i>
@@ -69,7 +65,6 @@ export default {
   data() {
     return {
       showNewComment: false,
-      showingComment: false,
       newComment: {
         body: "",
         taskId: this.taskData.id
