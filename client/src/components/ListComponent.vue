@@ -145,7 +145,7 @@ li {
   display: block;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(-50px) !important;
+  transform: translateX(-50px) rotate(90deg) scale(0) !important;
   transition: 0.2s ease all;
 }
 .dropdown-menu.show {

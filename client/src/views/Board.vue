@@ -143,16 +143,16 @@ li#delete-list:hover {
     display: block;
     visibility: hidden;
     opacity: 0;
-    transform: translateX(-50px) !important;
-    transition: 0.2s ease all;
+    transform: translateX(-50px) rotate(120deg) scale(0) !important;
+    transition: 0.25s ease all;
   }
   .dropdown-menu.show {
     display: block;
     visibility: visible;
     opacity: 1;
-    transform: translate(150px, 10px);
-    transform: rotate(180deg) !important;
-    transition: 0.2s ease all;
+
+    transform: translate(150px, 10px) !important;
+    transition: 0.25s ease all;
   }
 }
 
