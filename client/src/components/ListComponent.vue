@@ -114,6 +114,10 @@ li#delete-list:hover {
   text-decoration: none !important;
 }
 
+li {
+  list-style-type: none;
+}
+
 .caret-off::before {
   display: none;
 }
@@ -143,7 +147,7 @@ li#delete-list:hover {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(100px);
+  transform: translateY(-100px) !important;
 }
 
 .btn {
