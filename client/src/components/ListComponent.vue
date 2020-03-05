@@ -11,7 +11,7 @@
             <div class="btn-group dropright">
               <button
                 type="button"
-                class="btn btn-secondary dropdown-toggle caret-off px-1"
+                class="btn btn-secondary dropdown-toggle caret-off py-0 px-1"
                 data-toggle="dropdown"
               >
                 <i class="fas fa-cog"></i>
@@ -34,14 +34,20 @@
         <li class="bg-dark">
           <form @submit.prevent="addTask" class="form-inline">
             <input
-              class="form-control form-control-sm mx-auto my-2"
+              class="form-control form-control-sm ml-auto my-2"
               type="text"
               name="task"
               placeholder="Task..."
               v-model="newTask.body"
               required
             />
-            <button type="submit" class="btn btn-sm btn-secondary mx-auto my-2">Add Task</button>
+            <button
+              type="submit"
+              id="add-task-button"
+              class="btn btn-sm btn-secondary ml-2 mr-auto my-2 py-1 px-2"
+            >
+              <i class="fas fa-plus-square"></i>
+            </button>
           </form>
         </li>
         <transition-group class="col-12" name="fade" mode="out-in">
@@ -114,6 +120,14 @@ li#delete-list:hover {
   text-decoration: none !important;
 }
 
+li {
+  list-style-type: none;
+}
+
+#add-task-button:hover {
+  background-color: rgb(0, 110, 0);
+}
+
 .caret-off::before {
   display: none;
 }
@@ -143,7 +157,7 @@ li#delete-list:hover {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(100px);
+  transform: translateY(-100px) !important;
 }
 
 .btn {
