@@ -3,12 +3,8 @@
     <div class="card text-dark">
       <div class="card-header">
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-6">
-            <span>{{listData.title}}</span>
-          </div>
           <div class="col-3">
-            <div class="btn-group dropright">
+            <div class="btn-group dropleft">
               <button
                 type="button"
                 class="btn btn-secondary dropdown-toggle caret-off py-0 px-1"
@@ -28,6 +24,10 @@
               </div>
             </div>
           </div>
+          <div class="col-6">
+            <span>{{listData.title}}</span>
+          </div>
+          <div class="col-3"></div>
         </div>
       </div>
       <ul class="list-group list-group-flush">
@@ -50,14 +50,15 @@
             </button>
           </form>
         </li>
-        <transition-group class="col-12" name="fade" mode="out-in">
-          <task
-            v-for="task in listData.tasks"
-            :key="task.id"
-            :taskData="task"
-            class="list-group-item"
-          />
-        </transition-group>
+        <!-- <transition-group class="col-12" name="fade" mode="out-in"> -->
+        <task
+          v-for="task in listData.tasks"
+          :key="task.id"
+          :taskData="task"
+          :left="isleft"
+          class="list-group-item"
+        />
+        <!-- </transition-group> -->
       </ul>
     </div>
   </div>
@@ -76,7 +77,7 @@ export default {
       }
     };
   },
-  props: ["listData"],
+  props: ["listData", "index"],
   methods: {
     async deleteList() {
       if (
@@ -95,6 +96,11 @@ export default {
   },
   components: {
     Task
+  },
+  computed: {
+    isleft() {
+      return this.index % 4 == 0 || this.index % 4 == 1;
+    }
   }
 };
 </script>
@@ -139,14 +145,14 @@ li {
   display: block;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(-50px) !important;
+  transform: translateX(-50px) rotate(90deg) scale(0) !important;
   transition: 0.2s ease all;
 }
 .dropdown-menu.show {
   display: block;
   visibility: visible;
   opacity: 1;
-  transform: translateX(50px) !important;
+  transform: translate(50px, 50px) !important;
   transition: 0.2s ease all;
 }
 
