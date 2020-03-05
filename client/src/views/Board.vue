@@ -7,7 +7,12 @@
             <div class="row">
               <div class="col-3"></div>
               <div class="col-6">
-                <span v-if="board.title">Title: {{board.title}}</span>
+                <span v-if="editTitleMode">
+                  <form @submit.prevent="editBoardTitle">
+                    <input v-model="board.title" />
+                  </form>
+                </span>
+                <span v-else-if="board.title">Title: {{board.title}}</span>
                 <span v-else>This board has no title!</span>
               </div>
               <div class="col-3">
@@ -21,8 +26,11 @@
                 <div class="dropdown-menu text-center">
                   <!-- Dropdown menu links -->
                   <h6 class="dropdown-header">Board Options</h6>
-                  <li class="py-1">
+                  <li class="py-1" @click="editTitleMode = !editTitleMode">
                     <i class="fas fa-edit"></i> Edit Board Title
+                  </li>
+                  <li class="py-1" @click="editDescriptionMode = !editDescriptionMode">
+                    <i class="fas fa-edit"></i> Edit Board Description
                   </li>
                   <li id="delete-list" class="py-1" @click="deleteBoard">
                     <i class="fas fa-trash-alt"></i> Delete Board
@@ -32,7 +40,12 @@
             </div>
           </div>
           <div class="card-header">
-            <span v-if="board.description">Description: {{board.description}}</span>
+            <span v-if="editDescriptionMode">
+              <form @submit.prevent="editBoardDescription">
+                <input v-model="board.description" />
+              </form>
+            </span>
+            <span v-else-if="board.description">Description: {{board.description}}</span>
             <span v-else>This board has no description!</span>
           </div>
           <!-- Add List Group -->
@@ -74,6 +87,8 @@ export default {
   name: "Board",
   data() {
     return {
+      editTitleMode: false,
+      editDescriptionMode: false,
       newList: { boardId: this.$route.params.boardId, title: "" }
     };
   },
@@ -109,6 +124,14 @@ export default {
     },
     addList() {
       this.$store.dispatch("addList", this.newList);
+    },
+    editBoardTitle() {
+      this.$store.dispatch("editBoardTitle", this.board);
+      this.editTitleMode = false;
+    },
+    editBoardDescription() {
+      this.$store.dispatch("editBoardDescription", this.board);
+      this.editDescriptionMode = false;
     }
   },
   components: {

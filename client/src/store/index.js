@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 import router from '../router/index'
+import NotificationService from "../NotificationService";
 
 Vue.use(Vuex)
 
 //Allows axios to work locally or live
 let base = window.location.host.includes('localhost') ? '//localhost:3000/' : '/'
+
 
 let api = Axios.create({
   baseURL: base + "api/",
@@ -124,9 +126,26 @@ export default new Vuex.Store({
     async deleteBoard({ commit }, board) {
       let res = await api.delete(`boards/${board.id}`, board)
       commit('deleteBoard')
-
     },
 
+    async editBoardTitle({ commit }, boardData) {
+      try {
+        let res = await api.put(`boards/${boardData.id}`, { title: boardData.title })
+        await NotificationService.toast("Board Title Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update Board Title", 3000, "error")
+      }
+    },
+
+    async editBoardDescription({ commit }, boardData) {
+      try {
+        let res = await api.put(`boards/${boardData.id}`, { description: boardData.description })
+        await NotificationService.toast("List Description Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update Board Description", 3000, "error")
+
+      }
+    },
     setActiveBoard({ commit }, board) {
       commit("setActiveBoard", board)
     },
@@ -144,6 +163,16 @@ export default new Vuex.Store({
       commit("deleteList", listData)
     },
 
+    async editListTitle({ commit }, listData) {
+      try {
+        let res = await api.put(`lists/${listData.id}`, { title: listData.title })
+        await NotificationService.toast("List Title Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update List Title", 3500, "error")
+
+      }
+    },
+
     //#endregion 
 
     //#region -- TASKS --
@@ -156,6 +185,15 @@ export default new Vuex.Store({
     async moveTasks({ commit }, { task, target }) {
       let res = await api.put(`tasks/${task.id}`, { listId: target })
       commit("moveTask", { task, target })
+    },
+    async editTaskTitle({ commit }, taskData) {
+      try {
+        let res = await api.put(`tasks/${taskData.id}`, { body: taskData.body })
+        await NotificationService.toast("Task Title Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update Task Title", 3500, "error")
+
+      }
     },
 
 
