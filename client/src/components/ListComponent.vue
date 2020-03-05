@@ -15,7 +15,7 @@
               <div class="dropdown-menu text-center">
                 <!-- Dropdown menu links -->
                 <h6 class="dropdown-header">List Options</h6>
-                <li class="py-1">
+                <li class="py-1" @click="editMode = !editMode">
                   <i class="fas fa-edit"></i> Edit List Title
                 </li>
                 <li id="delete-list" class="py-1" @click="deleteList">
@@ -25,7 +25,31 @@
             </div>
           </div>
           <div class="col-6">
-            <span>{{listData.title}}</span>
+            <div class="row">
+              <ul v-if="editMode" class="list-group list-group-flush">
+                <li>
+                  <form class="form-inline" @submit.prevent="editListTitle">
+                    <div class="col-6>">
+                      <input
+                        id="edit-list-form"
+                        class="form-control form-control-sm ml-auto my-1"
+                        v-model="listData.title"
+                      />
+                    </div>
+                    <div class="col-3">
+                      <button
+                        type="submit"
+                        id="add-task-button"
+                        class="btn btn-sm btn-secondary ml-2 mr-auto my-2 py-1 px-2"
+                      >
+                        <i class="fas fa-plus-square"></i>
+                      </button>
+                    </div>
+                  </form>
+                </li>
+              </ul>
+              <span v-else>{{listData.title}}</span>
+            </div>
           </div>
           <div class="col-3"></div>
         </div>
@@ -71,6 +95,7 @@ export default {
   name: "List",
   data() {
     return {
+      editMode: false,
       newTask: {
         body: "",
         listId: this.listData.id
@@ -92,6 +117,10 @@ export default {
     addTask() {
       this.$store.dispatch("addTask", { ...this.newTask });
       this.newTask.body = "";
+    },
+    editListTitle() {
+      this.$store.dispatch("editListTitle", this.listData);
+      this.editMode = false;
     }
   },
   components: {
@@ -134,6 +163,10 @@ li {
   background-color: rgb(0, 110, 0);
 }
 
+#edit-list-form {
+  width: 6rem;
+}
+
 .caret-off::before {
   display: none;
 }
@@ -172,6 +205,6 @@ li {
 }
 
 span {
-  margin-left: auto !important;
+  margin: auto !important;
 }
 </style>

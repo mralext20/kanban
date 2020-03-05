@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 import router from '../router/index'
+import NotificationService from "../NotificationService";
 
 Vue.use(Vuex)
 
 //Allows axios to work locally or live
 let base = window.location.host.includes('localhost') ? '//localhost:3000/' : '/'
+
 
 let api = Axios.create({
   baseURL: base + "api/",
@@ -142,6 +144,15 @@ export default new Vuex.Store({
     async deleteList({ commit }, listData) {
       let res = await api.delete(`lists/${listData}`)
       commit("deleteList", listData)
+    },
+
+    async editListTitle({ commit }, listData) {
+      try {
+        let res = await api.put(`lists/${listData.id}`, { title: listData.title })
+        await NotificationService.toast("List Title Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update List Title")
+      }
     },
 
     //#endregion 
