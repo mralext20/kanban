@@ -57,7 +57,12 @@
       </div>
     </div>
     <transition-group tag="div" class="row pb-5" name="fade" mode="out-in">
-      <list v-for="list in board.lists" :key="list._id" :listData="list" />
+      <list
+        v-for="(list, key, index) in board.lists"
+        :key="list._id"
+        :index="index"
+        :listData="list"
+      />
     </transition-group>
   </div>
 </template>
@@ -133,6 +138,41 @@ li#delete-list:hover {
   text-decoration: none !important;
 }
 
+@media only screen and (min-width: 600px) {
+  .dropdown-menu {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-50px) !important;
+    transition: 0.2s ease all;
+  }
+  .dropdown-menu.show {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transform: translate(150px, 10px);
+    transform: rotate(180deg) !important;
+    transition: 0.2s ease all;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .dropdown-menu {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-50px) !important;
+    transition: 0.2s ease all;
+  }
+  .dropdown-menu.show {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-150px, 50px) !important;
+    transition: 0.2s ease all;
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.35s ease;
@@ -151,6 +191,7 @@ li#delete-list:hover {
 }
 
 .board {
+  min-height: 92vh;
   overflow-x: hidden;
 }
 
