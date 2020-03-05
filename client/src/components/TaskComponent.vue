@@ -23,7 +23,7 @@
         class="btn btn-primary my-1"
         type="button"
         data-toggle="collapse"
-        data-target=".multi-collapse"
+        :data-target="`#collapse-${taskData.id}`"
       >View {{taskData.comments.length}} Comment{{taskData.comments.length == 1 ? "": "s"}}</button>
       <div class="row">
         <div class="col">
@@ -31,8 +31,9 @@
             <div
               v-for="comment in taskData.comments"
               :key="comment.id"
-              class="collapse multi-collapse"
-            >{{comment}}</div>
+              class="collapse"
+              :id="`collapse-${taskData.id}`"
+            >{{comment.body}}</div>
           </div>
         </div>
       </div>
