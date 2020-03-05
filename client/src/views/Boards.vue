@@ -1,7 +1,7 @@
 <template>
   <div class="boards container-fluid">
     <!-- Form Column -->
-    <div class="col-12">
+    <div class="col-12" id="form-column">
       <div class="row">
         <div class="col-12">
           <h2>Your Boards</h2>
@@ -42,7 +42,7 @@
     </div>
     <!-- Board -->
     <div class="col-12">
-      <transition-group tag="div" class="row" name="fade" mode="out-in">
+      <transition-group tag="div" class="row board" name="fade" mode="out-in">
         <div class="col-md-3 py-3" v-for="board in boards" :key="board._id">
           <div class="card mx-auto my-3">
             <router-link :to="{name: 'board', params: {boardId: board._id}}">
@@ -93,10 +93,11 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.35s ease;
+  transition: all 0.35s ease;
 }
 .fade-enter,
 .fade-leave-to {
+  transform: translateY(100px);
   opacity: 0;
 }
 
