@@ -41,7 +41,7 @@
               v-model="newTask.body"
               required
             />
-            <button type="submit" class="btn btn-sm btn-secondary mx-auto mr-3 my-2">Add Task</button>
+            <button type="submit" class="btn btn-sm btn-secondary mx-auto my-2">Add Task</button>
           </form>
         </li>
         <transition-group class="col-12" name="fade" mode="out-in">
@@ -130,11 +130,12 @@ li#delete-list:hover {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.35s ease;
+  transition: all 0.35s ease;
 }
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(100px);
 }
 
 .btn {

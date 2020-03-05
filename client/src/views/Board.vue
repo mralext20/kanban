@@ -129,11 +129,12 @@ li#delete-list:hover {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.35s ease;
+  transition: all 0.35s ease;
 }
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(100px);
 }
 
 .caret-off::before {
