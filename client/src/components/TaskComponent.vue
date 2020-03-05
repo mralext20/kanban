@@ -33,20 +33,18 @@
               :key="comment.id"
               class="collapse"
               :id="`collapse-${taskData.id}`"
-            >{{comment.body}}</div>
+            >
+              {{comment.body}}
+              <button class="btn btn-danger" @click="deleteComment(comment)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </li>
 </template>
-
-
-
-
-
-
-
 
 
 
@@ -67,6 +65,12 @@ export default {
       this.$store.dispatch("moveTasks", {
         task: this.taskData,
         target: listId
+      });
+    },
+    deleteComment(comment) {
+      this.$store.dispatch("deleteComment", {
+        comment: comment,
+        task: this.taskData
       });
     }
   },
