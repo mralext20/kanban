@@ -126,9 +126,27 @@ export default new Vuex.Store({
     async deleteBoard({ commit }, board) {
       let res = await api.delete(`boards/${board.id}`, board)
       commit('deleteBoard')
-
     },
 
+    async editBoardTitle({ commit }, boardData) {
+      try {
+        let res = await api.put(`boards/${boardData.id}`, { title: boardData.title })
+        await NotificationService.toast("Board Title Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update Board Title", 3000, "error")
+      }
+    },
+
+    async editBoardDescription({ commit }, boardData) {
+      try {
+        throw new Error()
+        let res = await api.put(`boards/${boardData.id}`, { description: boardData.description })
+        await NotificationService.toast("List Description Changed Successfully")
+      } catch (error) {
+        await NotificationService.toast("Failed to Update Board Description", 3000, "error")
+
+      }
+    },
     setActiveBoard({ commit }, board) {
       commit("setActiveBoard", board)
     },
@@ -151,7 +169,8 @@ export default new Vuex.Store({
         let res = await api.put(`lists/${listData.id}`, { title: listData.title })
         await NotificationService.toast("List Title Changed Successfully")
       } catch (error) {
-        await NotificationService.toast("Failed to Update List Title")
+        await NotificationService.toast("Failed to Update List Title", 3500, "error")
+
       }
     },
 

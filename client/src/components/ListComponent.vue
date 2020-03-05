@@ -39,8 +39,7 @@
                     <div class="col-3">
                       <button
                         type="submit"
-                        id="add-task-button"
-                        class="btn btn-sm btn-secondary ml-2 mr-auto my-2 py-1 px-2"
+                        class="btn btn-sm add-task-button btn-secondary ml-2 mr-auto my-2 py-1 px-2"
                       >
                         <i class="fas fa-plus-square"></i>
                       </button>
@@ -67,8 +66,7 @@
             />
             <button
               type="submit"
-              id="add-task-button"
-              class="btn btn-sm btn-secondary ml-2 mr-auto my-2 py-1 px-2"
+              class="btn btn-sm add-task-button btn-secondary ml-2 mr-auto my-2 py-1 px-2"
             >
               <i class="fas fa-plus-square"></i>
             </button>
@@ -159,7 +157,7 @@ li {
   list-style-type: none;
 }
 
-#add-task-button:hover {
+.add-task-button:hover {
   background-color: rgb(0, 110, 0);
 }
 

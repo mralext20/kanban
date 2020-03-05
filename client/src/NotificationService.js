@@ -22,12 +22,11 @@ export default class NotificationService {
     }
   }
 
-  static toast(title = "default handler", timer = 3500, type = 'success') {
+  static toast(title = "default handler", timer = 3500, icon = 'success') {
     // @ts-ignore
     swal.fire({
       title,
-      type: type,
-      icon: type,
+      icon: icon,
       timer,
       showConfirmButton: false,
       position: "top-right",
