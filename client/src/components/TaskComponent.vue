@@ -189,14 +189,14 @@ ul {
   display: block;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(-50px) !important;
+  transform: translateX(-10%) rotate(120deg) scale(0) !important;
   transition: 0.2s ease all;
 }
 .slideRight.dropdown-menu.show {
   display: block;
   visibility: visible;
   opacity: 1;
-  transform: translate(50px) !important;
+  transform: translate(30%) !important;
   transition: 0.2s ease all;
 }
 
@@ -204,14 +204,14 @@ ul {
   display: block;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(50px) !important;
+  transform: translateX(-100%) rotate(120deg) scale(0) !important;
   transition: 0.2s ease all;
 }
 .slideLeft.dropdown-menu.show {
   display: block;
   visibility: visible;
   opacity: 1;
-  transform: translate(-350px) !important;
+  transform: translate(-150%) !important;
   transition: 0.2s ease all;
 }
 
