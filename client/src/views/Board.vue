@@ -15,6 +15,7 @@
                 <span v-else-if="board.title">Title: {{board.title}}</span>
                 <span v-else>This board has no title!</span>
               </div>
+              <!-- Board options -->
               <div class="col-3">
                 <button
                   type="button"
@@ -37,6 +38,7 @@
                   </li>
                 </div>
               </div>
+              <!-- End Board options -->
             </div>
           </div>
           <div class="card-header">
@@ -60,12 +62,16 @@
                   v-model="newList.title"
                   required
                 />
-                <button type="submit" class="btn btn-sm btn-secondary ml-3 mr-auto my-2">
+                <button
+                  type="submit"
+                  class="add-list-button btn btn-sm btn-secondary ml-3 mr-auto my-2"
+                >
                   <i class="fas fa-plus-square"></i>
                 </button>
               </form>
             </li>
           </ul>
+          <!-- End Add List Group -->
         </div>
       </div>
     </div>
@@ -211,6 +217,10 @@ li#delete-list:hover {
 }
 .caret-off::after {
   display: none;
+}
+
+.add-list-button:hover {
+  background-color: rgb(0, 110, 0);
 }
 
 .board {
