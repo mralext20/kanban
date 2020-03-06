@@ -35,10 +35,10 @@
       <div id="comment-group" class="btn-group dropright">
         <button
           type="button"
-          class="btn btn-secondary dropdown-toggle caret-off py-0 px-1"
+          class="btn btn-secondary dropdown-toggle comment-button caret-off px-1"
           data-toggle="dropdown"
         >
-          <i class="far fa-comments"></i>
+          <i class="far fa-comments fa-lg"></i>
         </button>
         <div
           id="comment-menu row"
@@ -189,14 +189,14 @@ ul {
   display: block;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(-50px) !important;
+  transform: translateX(-10%) rotate(120deg) scale(0) !important;
   transition: 0.2s ease all;
 }
 .slideRight.dropdown-menu.show {
   display: block;
   visibility: visible;
   opacity: 1;
-  transform: translate(50px) !important;
+  transform: translate(30%) !important;
   transition: 0.2s ease all;
 }
 
@@ -204,14 +204,14 @@ ul {
   display: block;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(50px) !important;
+  transform: translateX(-100%) rotate(120deg) scale(0) !important;
   transition: 0.2s ease all;
 }
 .slideLeft.dropdown-menu.show {
   display: block;
   visibility: visible;
   opacity: 1;
-  transform: translate(-350px) !important;
+  transform: translate(-150%) !important;
   transition: 0.2s ease all;
 }
 
@@ -227,6 +227,10 @@ ul {
 
 .add-comment-button:hover {
   background-color: rgb(0, 110, 0);
+}
+
+.comment-button {
+  padding: 0.3rem;
 }
 
 .caret-off::before {

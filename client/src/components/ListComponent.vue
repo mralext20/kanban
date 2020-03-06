@@ -3,6 +3,7 @@
     <div class="card text-dark">
       <div class="card-header">
         <div class="row">
+          <!-- List Menu Button -->
           <div class="col-3">
             <div class="btn-group dropleft">
               <button
@@ -24,33 +25,34 @@
               </div>
             </div>
           </div>
-          <div class="col-6">
-            <div class="row">
-              <ul v-if="editMode" class="list-group list-group-flush">
-                <li>
-                  <form class="form-inline" @submit.prevent="editListTitle">
-                    <div class="col-6>">
-                      <input
-                        id="edit-list-form"
-                        class="form-control form-control-sm ml-auto my-1"
-                        v-model="listData.title"
-                      />
-                    </div>
-                    <div class="col-3">
-                      <button
-                        type="submit"
-                        class="btn btn-sm add-task-button btn-secondary ml-2 mr-auto my-2 py-1 px-2"
-                      >
-                        <i class="fas fa-plus-square"></i>
-                      </button>
-                    </div>
-                  </form>
-                </li>
-              </ul>
-              <span v-else>{{listData.title}}</span>
-            </div>
+          <div v-if="!editMode" class="col-6">
+            <span>{{listData.title}}</span>
           </div>
-          <div class="col-3"></div>
+
+          <div v-if="!editMode" class="col-3"></div>
+          <div v-else class="col-9">
+            <ul v-if="editMode" class="list-group list-group-flush">
+              <li>
+                <form class="form-inline" @submit.prevent="editListTitle">
+                  <div class="col-6>">
+                    <input
+                      id="edit-list-form"
+                      class="form-control form-control-sm ml-auto my-1"
+                      v-model="listData.title"
+                    />
+                  </div>
+                  <div class="col-3">
+                    <button
+                      type="submit"
+                      class="btn btn-sm add-task-button btn-secondary ml-2 mr-auto my-2 py-1 px-2"
+                    >
+                      <i class="fas fa-plus-square"></i>
+                    </button>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <ul class="list-group list-group-flush">
@@ -162,7 +164,7 @@ li {
 }
 
 #edit-list-form {
-  width: 6rem;
+  width: auto;
 }
 
 .caret-off::before {
