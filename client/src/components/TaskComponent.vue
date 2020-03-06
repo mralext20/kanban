@@ -1,7 +1,7 @@
 <template>
   <li class="task">
     <span v-if="editMode">
-      <form @submit="editTaskTitle">
+      <form @submit.prevent="editTaskTitle">
         <input v-model="taskData.body" />
         <button class="btn btn-sm btn-secondary">
           <i class="fas fa-check"></i>
