@@ -35,10 +35,10 @@
       <div id="comment-group" class="btn-group dropright">
         <button
           type="button"
-          class="btn btn-secondary dropdown-toggle caret-off py-0 px-1"
+          class="btn btn-secondary dropdown-toggle comment-button caret-off px-1"
           data-toggle="dropdown"
         >
-          <i class="far fa-comments"></i>
+          <i class="far fa-comments fa-lg"></i>
         </button>
         <div
           id="comment-menu row"
@@ -227,6 +227,10 @@ ul {
 
 .add-comment-button:hover {
   background-color: rgb(0, 110, 0);
+}
+
+.comment-button {
+  padding: 0.3rem;
 }
 
 .caret-off::before {
