@@ -118,7 +118,7 @@ a {
 }
 
 .card {
-  opacity: 90%;
+  opacity: 0.9;
   height: 6.8rem;
   width: auto !important;
 }
