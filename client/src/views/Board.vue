@@ -226,7 +226,7 @@ li#delete-list:hover {
 .board {
   min-height: 92vh;
   overflow-x: hidden;
-  opacity: 90%;
+  opacity: 0.9;
 }
 
 /* Extra small devices (phones, 600px and down) */
